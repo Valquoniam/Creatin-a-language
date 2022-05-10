@@ -13,6 +13,7 @@ extern int linenumber;
 %token OP CP
 %token IF ELSE WHILE FOR
 %token AND OR
+%token IF ELSE WHILE 
 
 
 %%
@@ -36,17 +37,19 @@ term: NUMBER
  | OP exp CP {$$ = $2;}
  ;
 
- if_statement:
-  IF LPAREN expression RPAREN tail else_if optional_else
-  {
-    $$ = new_ast_if_node($3, $5, elsifs, elseif_count, $7);
-    elseif_count = 0;
-    elsifs = NULL;
-  }
-  | IF LPAREN expression RPAREN tail optional_else
-  {
-    $$ = new_ast_if_node($3, $5, NULL, 0, $6);
-  }
+
+
+IfElse : IF OP condition CP OBRACE statement CBRACE
+ | IF OP condition CP OBRACE statement CBRACE ELSE OBRACE statement CBRACE
+
+condition : exp SUP exp
+ | exp INF exp {$$ = $1}
+ | exp INFEQ exp {$$ = $1}
+ | exp SUPEQ exp {$$ = $1}
+ ;
+
+
+
 %%
 int main(int argc, char **argv)
 {

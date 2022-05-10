@@ -17,7 +17,7 @@ int linenumber = 1;
 "|"    { return ABS; }
 
 [0-9]+ { return NUMBER; }
-"\n"    { linenumber+=1; return EOL; }
+"\n"    { linenumber++; return EOL; }
 [ \t]  { /* ignore whitespace */ }
 "$".*  /* ignore comments */
 
@@ -42,18 +42,21 @@ int linenumber = 1;
 
 
 
-""  {return OR; }
-""  {return AND;}
-""  {return IF; }
-""  {return ELSE; }
-""  {return WHILE;}
-""  {return FOR; }
-""  {return RETURN; }
+"TWO OF US"  {return OR; }
+"COME TOGETHER"  {return AND;}
+"IMAGINE"  {return IF; }
+"WAIT"  {return ELSE; }
+""  {return THEN; }
+"TILL THERE WAS YOU"  {return WHILE;}
+"FOR NO ONE"  {return FOR; }
+"I'LL BE BACK"  {return RETURN; }
 ""  {return BREAK; }
 ""  {return CHAR; }
 ""  {return INT; }
 ""  {return FLOAT; }
 ""  {return DOUBLE; }
-""  {return RETURN; }
+"I'LL BE BACK"  {return RETURN; }
+"YES IT IS"  {return TRUE; }
+"NO REPLY"  {return FALSE; }
 %%
 
