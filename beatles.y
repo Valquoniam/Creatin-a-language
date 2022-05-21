@@ -1,20 +1,19 @@
 %{
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 int yylex();
 void yyerror(char *s);
-extern int linenumber;
+extern FILE *yyin;
+
 %}
 
 %token NUMBER
 %token ADD SUB MUL DIV ABS
 %token EOL
 %token OP CP
-%token IF ELSE WHILE FOR
-%token AND OR
-%token IF ELSE WHILE 
-
+%token IF
+%token OBRACE CBRACE OBRACK CBRACK
+%token SEMI DOT COMMA ASSIGN
+%token EQUAL DIFF SUP INF INFEQ SUPEQ
 
 %%
 
@@ -36,24 +35,16 @@ term: NUMBER
  | ABS term   { $$ = $2 >= 0? $2 : - $2; }
  | OP exp CP {$$ = $2;}
  ;
-
-
-
-IfElse : IF OP condition CP OBRACE statement CBRACE
- | IF OP condition CP OBRACE statement CBRACE ELSE OBRACE statement CBRACE
-
-condition : exp SUP exp
- | exp INF exp {$$ = $1}
- | exp INFEQ exp {$$ = $1}
- | exp SUPEQ exp {$$ = $1}
- ;
-
-
-
+ 
 %%
 int main(int argc, char **argv)
 {
-  yyparse();
+  int flag;
+  yyin = fopen(argv[1], "r");
+  flag = yyparse();
+  fclose(yyin);
+    
+  return flag;
 }
 
 void yyerror(char *s)
