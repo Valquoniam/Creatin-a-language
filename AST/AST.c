@@ -64,6 +64,20 @@ struct Node* CreateNode (enum NodePlaces place, enum VariableTypes var_type, str
     return node;
 }
 
+void FreeAST (struct NodePlaces* AST)
+{
+    if (AST == NULL)
+        return;
+    
+    FreeAST(AST->Child1);
+    FreeAST(AST->Child2);
+    FreeAST(AST->Child3);
+
+    if (AST->C != NULL)
+        free(AST->C);
+    
+    free(ast);
+}
 
 
 
