@@ -3,6 +3,7 @@ hey jude HelloGoodbye ()
   paperback writer "Hello World!"
   paperback writer "Goodbye World!"
 
+HelloGoodbye ()
 read_s s
 
 paperback writer s
