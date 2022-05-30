@@ -1,0 +1,8 @@
+hey jude s
+hey jude HelloGoodbye ()
+  paperback writer "Hello World!"
+  paperback writer "Goodbye World!"
+
+read_s s
+
+paperback writer s

@@ -1,0 +1,17 @@
+hey jude a = 0
+hey jude b = 1
+hey jude i
+
+paperback writer "McCartney asks you to enter n to print the first n terms of the fibonacci series"
+read_i i
+
+paperback writer a
+paperback writer b
+
+for no one i : {
+  b = b + a
+  a = b - a
+  paperback writer b
+}
+
+
