@@ -1,4 +1,4 @@
-paperback writer " Lennon says that this program will print the even numbers between 1 and 100";
+paperback writer " Lennon says that this program will print the even numbers between 1 and 100"
 
 hey jude i = 0
 till there was you (i <= 100) {
